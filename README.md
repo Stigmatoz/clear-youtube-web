@@ -12,5 +12,5 @@ pnpm build    # static build into dist/
 
 ## Deploy
 
-Every push to `main` builds and publishes the site via `.github/workflows/deploy.yml`.
+Every push to `master` builds and publishes the site via `.github/workflows/deploy.yml`.
 One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
