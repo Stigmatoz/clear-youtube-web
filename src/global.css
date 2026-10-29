@@ -1,0 +1,153 @@
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --ink: #141414;
+  --ink-2: #3d3d3a;
+  --muted: #74736d;
+  --line: #e4e2db;
+  --line-strong: #d3d0c7;
+  --red: #d83a26;
+  --red-dark: #b92d1b;
+  --dark: #151515;
+  --dark-2: #222221;
+  --dark-line: #2f2f2d;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow-pop: 0 24px 60px -12px rgba(20, 20, 20, 0.28), 0 2px 6px rgba(20, 20, 20, 0.06);
+
+  --font: 'Inter Variable', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font);
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2 {
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    transform 0.15s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-red {
+  background: var(--red);
+  color: #fff;
+}
+.btn-red:hover {
+  background: var(--red-dark);
+}
+.btn-dark {
+  background: var(--ink);
+  color: #fff;
+}
+.btn-dark:hover {
+  background: #333;
+}
+.btn-outline {
+  background: var(--surface);
+  border-color: var(--line-strong);
+}
+.btn-outline:hover {
+  border-color: var(--ink);
+}
+.btn-white {
+  background: #fff;
+  color: var(--ink);
+}
+.btn-white:hover {
+  background: #f1efea;
+}
+.btn-lg {
+  height: 46px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

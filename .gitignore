@@ -1,0 +1,31 @@
+
+# Dependencies
+/node_modules
+
+# Production build
+/dist/
+/.vite-ssg-temp/
+
+# Local environment
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
