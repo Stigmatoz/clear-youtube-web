@@ -1,67 +1,39 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   build:
-    name: Build Vue application
-    runs-on: ubuntu-24.04
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
-          version: 9
-
-      - name: Install Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '20'
-          cache: pnpm
-
-      - name: Configure Pages
-        id: pages
+          node-version: 24
+      - id: pages
         uses: actions/configure-pages@v5
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Vue application
-        run: pnpm run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
         env:
           # "/<repo>" for a project site, "" for a custom domain or <user>.github.io
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
   deploy:
-    name: Deploy to GitHub Pages
     needs: build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
